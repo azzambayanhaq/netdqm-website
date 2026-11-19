@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://azzambayanhaq.github.io/netdqm-website/sitemap.xml
+Sitemap: https://netdqm.vercel.app/sitemap.xml

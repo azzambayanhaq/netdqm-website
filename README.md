@@ -3,7 +3,8 @@
 Repositori publik untuk situs unduhan NetDQM. Situs ini statis: HTML, CSS,
 JavaScript, dan gambar, tanpa framework, build step, atau dependensi eksternal.
 
-- Situs: <https://azzambayanhaq.github.io/netdqm-website/>
+- Situs utama: <https://netdqm.vercel.app/>
+- GitHub Pages cadangan: <https://azzambayanhaq.github.io/netdqm-website/>
 - Unduhan: <https://github.com/azzambayanhaq/netdqm-downloads/releases>
 - Aplikasi: repositori core bersifat privat
 
@@ -38,11 +39,11 @@ python -m http.server 8000
 
 Lalu buka <http://127.0.0.1:8000/>.
 
-## GitHub Pages
+## Hosting
 
-Workflow `.github/workflows/pages.yml` menerbitkan seluruh isi repositori setiap
-kali `main` diperbarui. Aktifkan di **Settings → Pages → Build and deployment →
-Source: GitHub Actions**.
+Vercel menerbitkan situs utama dari branch `main` setiap ada perubahan pada repo
+ini. GitHub Pages tetap aktif sebagai alamat cadangan melalui workflow
+`.github/workflows/pages.yml`.
 
 ## Tautan unduhan
 
@@ -65,7 +66,7 @@ berlaku untuk rilis berikutnya.
 
 ## Panduan
 
-- [Tutorial penggunaan singkat](https://azzambayanhaq.github.io/netdqm-website/panduan.html)
+- [Tutorial penggunaan singkat](https://netdqm.vercel.app/panduan.html)
   tersedia langsung dari situs.
 - [Tutorial Windows lengkap](TUTORIAL-WINDOWS.md) membahas instalasi, fitur,
   troubleshooting, dan penghapusan aplikasi.
