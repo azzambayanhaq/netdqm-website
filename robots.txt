@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://azzambayanhaq.github.io/netdqm-website/sitemap.xml
