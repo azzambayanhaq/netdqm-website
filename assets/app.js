@@ -274,6 +274,8 @@ function applyLanguage(lang) {
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
 
+  window.dispatchEvent(new Event("netdqm:languagechange"));
+
   if (lightboxCaptionKey) {
     const caption = translate(lightboxCaptionKey);
     const captionNode = document.getElementById("lightbox-caption");

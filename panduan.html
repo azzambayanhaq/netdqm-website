@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#070d18">
   <link rel="canonical" href="https://azzambayanhaq.github.io/netdqm-website/panduan.html">
   <link rel="icon" href="assets/favicon.png" type="image/png">
+  <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/style.css">
   <style>
     .guide-hero { padding: 76px 0 42px; }
@@ -19,7 +20,7 @@
     .guide-content p, .guide-content li { color: var(--muted); line-height: 1.75; }
     .guide-content li + li { margin-top: 7px; }
     .guide-content strong { color: var(--text); }
-    .guide-content pre { overflow-x: auto; padding: 16px 18px; border: 1px solid var(--border); border-radius: 10px; background: #08111f; color: #cde7ec; }
+    .guide-content pre { overflow-x: auto; padding: 16px 18px; border: 1px solid var(--border); border-radius: 10px; background: var(--code-bg); color: var(--code-text); }
     .guide-toc { position: sticky; top: 92px; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); }
     .guide-toc strong { display: block; margin-bottom: 10px; }
     .guide-toc a { display: block; padding: 6px 0; color: var(--muted); font-size: 14px; }
@@ -44,7 +45,14 @@
         <a href="index.html#features">Fitur</a>
         <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md">Tutorial lengkap</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="index.html#download">Unduh aplikasi</a>
+      <div class="nav-tools">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Ganti ke tema terang" title="Ganti ke tema terang" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+          <span data-theme-label>Terang</span>
+        </button>
+        <a class="btn btn-primary btn-sm" href="index.html#download">Unduh aplikasi</a>
+      </div>
     </div>
   </header>
   <main id="main">

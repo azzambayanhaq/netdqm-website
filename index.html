@@ -15,6 +15,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/logo.png">
+  <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -34,9 +35,16 @@
         <a href="panduan.html" data-i18n="nav.tutorial">Panduan</a>
         <a href="https://github.com/azzambayanhaq/netdqm-website" target="_blank" rel="noopener">GitHub</a>
       </nav>
-      <div class="lang" role="group" aria-label="Bahasa / Language" data-i18n-label="lang.label">
-        <button type="button" data-lang="id" class="active" aria-pressed="true">ID</button>
-        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <div class="nav-tools">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Ganti ke tema terang" title="Ganti ke tema terang" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+          <span data-theme-label>Terang</span>
+        </button>
+        <div class="lang" role="group" aria-label="Bahasa / Language" data-i18n-label="lang.label">
+          <button type="button" data-lang="id" class="active" aria-pressed="true">ID</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </div>
   </header>

@@ -16,6 +16,7 @@ JavaScript, dan gambar, tanpa framework, build step, atau dependensi eksternal.
 ├── assets/
 │   ├── style.css
 │   ├── app.js                 # terjemahan ID/EN dan lightbox
+│   ├── theme.js               # dark/light mode dan preferensi pengguna
 │   ├── logo.png
 │   ├── favicon.png
 │   └── screenshots/           # tangkapan layar demo sintetis
@@ -94,7 +95,9 @@ siswa asli.
 Semua teks yang terlihat memiliki atribut `data-i18n`, `data-i18n-html`, atau
 `data-i18n-label`. Tambahkan kunci yang sama ke `I18N.id` dan `I18N.en` di
 `assets/app.js`. Bahasa awal mengikuti `localStorage` lalu bahasa browser;
-pengguna dapat beralih lewat tombol ID/EN.
+pengguna dapat beralih lewat tombol ID/EN. Tema terang/gelap mengikuti
+preferensi sistem pada kunjungan pertama, lalu pilihan pengguna disimpan di
+`localStorage` dan berlaku di halaman utama serta panduan.
 
 ## Lisensi
 
