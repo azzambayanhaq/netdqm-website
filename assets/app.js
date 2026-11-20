@@ -108,7 +108,6 @@ const I18N = {
     "footer.licenseTitle": "Lisensi",
     "footer.license": "MIT License. Bebas dipakai, diubah, dan didistribusikan dengan tetap menyertakan pemberitahuan hak cipta.",
     "footer.copy": "© 2026 NetDQM contributors.",
-    "footer.affiliation": "Tidak berafiliasi dengan NetSupport atau produk pihak ketiga lainnya.",
     "lightbox.close": "Tutup"
   },
   en: {
@@ -218,7 +217,6 @@ const I18N = {
     "footer.licenseTitle": "License",
     "footer.license": "MIT License. Free to use, modify, and distribute with the copyright notice preserved.",
     "footer.copy": "© 2026 NetDQM contributors.",
-    "footer.affiliation": "Not affiliated with NetSupport or any other third-party product.",
     "lightbox.close": "Close"
   }
 };
