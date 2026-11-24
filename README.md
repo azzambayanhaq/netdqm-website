@@ -13,6 +13,12 @@ JavaScript, dan gambar, tanpa framework, build step, atau dependensi eksternal.
 ```text
 .
 ├── index.html                 # halaman utama (ID default, toggle EN)
+├── fitur.html                 # halaman fitur
+├── screenshots.html           # halaman tangkapan layar
+├── download.html              # halaman unduhan
+├── mulai.html                 # halaman mulai
+├── panduan.html               # halaman panduan
+├── sitemap.xml                # peta situs
 ├── .nojekyll                  # agar GitHub Pages tidak memproses Jekyll
 ├── assets/
 │   ├── style.css

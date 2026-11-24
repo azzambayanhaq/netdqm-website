@@ -18,20 +18,20 @@
   <script src="assets/theme.js"></script>
   <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body data-page-title="page.home.title">
   <a class="skip-link" href="#main" data-i18n="skip">Lewati ke konten</a>
-
   <header class="site-header">
     <div class="wrap nav">
-      <a class="brand" href="#top" aria-label="NetDQM">
+      <a class="brand" href="index.html" aria-label="NetDQM">
         <img src="assets/logo.png" alt="" width="36" height="36">
         <span>NetDQM</span>
       </a>
       <nav class="nav-links" aria-label="Navigasi utama">
-        <a href="#features" data-i18n="nav.features">Fitur</a>
-        <a href="#screens" data-i18n="nav.screens">Tangkapan Layar</a>
-        <a href="#download" data-i18n="nav.download">Unduh</a>
-        <a href="#start" data-i18n="nav.start">Mulai</a>
+        <a href="index.html" data-i18n="nav.home" class="active" aria-current="page">Beranda</a>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="screenshots.html" data-i18n="nav.screens">Tangkapan Layar</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start">Mulai</a>
         <a href="panduan.html" data-i18n="nav.tutorial">Panduan</a>
         <a href="https://github.com/azzambayanhaq/netdqm-website" target="_blank" rel="noopener">GitHub</a>
       </nav>
@@ -48,9 +48,8 @@
       </div>
     </div>
   </header>
-
   <main id="main">
-    <section class="hero" id="top">
+<section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <span class="eyebrow" data-i18n="hero.eyebrow">Manajemen kelas original</span>
@@ -60,7 +59,7 @@
           </h1>
           <p class="lead" data-i18n="hero.lead">Pantau layar siswa, kendalikan komputer, siarkan materi, kirim file, jalankan kuis, dan catat absensi — semuanya dari satu konsol guru. Dibuat dari awal untuk Windows dan Linux.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#download" data-i18n="hero.cta1">Unduh NetDQM</a>
+            <a class="btn btn-primary" href="download.html" data-i18n="hero.cta1">Unduh NetDQM</a>
             <a class="btn btn-ghost" href="panduan.html" data-i18n="hero.cta2">Tutorial penggunaan</a>
           </div>
           <ul class="hero-badges">
@@ -96,243 +95,12 @@
             <code>192.168.1.10<span>:47800</span></code>
           </div>
           <p data-i18n="server.note">Ini hanya contoh. Ganti dengan IP komputer server di lab Anda. Alamat server hanya dapat diakses dari jaringan lab yang dikelola; jangan membuka port server ke internet.</p>
-          <a class="text-link" href="#start" data-i18n="server.link">Cara menyambungkan →</a>
+          <a class="text-link" href="mulai.html" data-i18n="server.link">Cara menyambungkan →</a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="features">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="features.eyebrow">Satu konsol untuk seluruh kelas</span>
-          <h2 data-i18n="features.title">Fitur yang benar-benar dipakai di lab</h2>
-          <p data-i18n="features.lead">Dirancang untuk guru, bukan administrator jaringan. Semua koneksi melewati server lab, dan kunci jawaban kuis tetap di server.</p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
-            </div>
-            <h3 data-i18n="features.monitor.title">Pemantauan langsung</h3>
-            <p data-i18n="features.monitor.desc">Thumbnail layar setiap siswa diperbarui berkala. Cari berdasarkan nama, pengguna, atau IP, lalu pilih satu atau banyak siswa.</p>
-          </article>
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H4z"/><path d="M9 20h6M12 16v4"/><path d="M9 10l2 2 4-4"/></svg>
-            </div>
-            <h3 data-i18n="features.remote.title">Remote control</h3>
-            <p data-i18n="features.remote.desc">Lihat layar penuh, kendalikan mouse dan keyboard, pilih monitor, atur FPS/kualitas, ambil snapshot, atau rekam sesi.</p>
-          </article>
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h18v12H3z"/><path d="M7 21h10M12 17v4"/><path d="M8 9l3 2-3 2"/></svg>
-            </div>
-            <h3 data-i18n="features.broadcast.title">Siaran layar guru</h3>
-            <p data-i18n="features.broadcast.desc">Tampilkan layar guru sebagai overlay penuh di semua siswa atau hanya yang dipilih, dengan pengaturan monitor, FPS, dan kualitas.</p>
-          </article>
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H4z"/><path d="M8 20h8"/><path d="M8 9h8M8 12h5"/></svg>
-            </div>
-            <h3 data-i18n="features.chat.title">Chat dan transfer file</h3>
-            <p data-i18n="features.chat.desc">Chat dengan seluruh kelas atau satu siswa. Kirim file dua arah; siswa juga dapat mengirim tugas ke komputer guru.</p>
-          </article>
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
-            </div>
-            <h3 data-i18n="features.quiz.title">Kuis dan absensi</h3>
-            <p data-i18n="features.quiz.desc">Buat kuis pilihan ganda, mulai dari konsol, pantau jawaban masuk, dan lihat skor otomatis. Absensi harian dapat diekspor ke CSV.</p>
-          </article>
-          <article class="feature-card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <h3 data-i18n="features.secure.title">Aman dan mandiri</h3>
-            <p data-i18n="features.secure.desc">Autentikasi HMAC-SHA256, password tidak dikirim mentah, TLS opsional, audit SQLite, serta pembaruan terpusat dengan verifikasi SHA-256.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="screens">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="screens.eyebrow">Tampilan aplikasi</span>
-          <h2 data-i18n="screens.title">Lihat sebelum memasang</h2>
-          <p data-i18n="screens.lead">Tangkapan layar berikut memakai data demo sintetis. Tidak ada data siswa asli yang ditampilkan.</p>
-        </div>
-        <div class="shot-grid">
-          <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/console.png" data-caption="screens.console.title">
-              <img src="assets/screenshots/console.png" alt="Konsol guru dengan kartu siswa dan chat" width="1440" height="900" loading="lazy">
-            </button>
-            <figcaption>
-              <strong data-i18n="screens.console.title">Konsol guru</strong>
-              <span data-i18n="screens.console.caption">Pantau seluruh kelas, pilih siswa, dan kirim perintah dari toolbar.</span>
-            </figcaption>
-          </figure>
-          <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/remote.png" data-caption="screens.remote.title">
-              <img src="assets/screenshots/remote.png" alt="Jendela remote control menampilkan layar siswa" width="1400" height="820" loading="lazy">
-            </button>
-            <figcaption>
-              <strong data-i18n="screens.remote.title">Remote &amp; pantau</strong>
-              <span data-i18n="screens.remote.caption">Kendalikan mouse/keyboard, pilih monitor, rekam sesi, atau ambil snapshot.</span>
-            </figcaption>
-          </figure>
-          <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/quiz.png" data-caption="screens.quiz.title">
-              <img src="assets/screenshots/quiz.png" alt="Dialog kuis dengan daftar kuis dan tombol mulai" width="920" height="650" loading="lazy">
-            </button>
-            <figcaption>
-              <strong data-i18n="screens.quiz.title">Kelola kuis</strong>
-              <span data-i18n="screens.quiz.caption">Perpustakaan kuis, editor pertanyaan, dan monitor jawaban siswa.</span>
-            </figcaption>
-          </figure>
-          <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/attendance.png" data-caption="screens.attendance.title">
-              <img src="assets/screenshots/attendance.png" alt="Tabel absensi siswa dengan status online" width="1000" height="760" loading="lazy">
-            </button>
-            <figcaption>
-              <strong data-i18n="screens.attendance.title">Absensi harian</strong>
-              <span data-i18n="screens.attendance.caption">Waktu pertama/terakhir, durasi, sesi, status online, dan ekspor CSV.</span>
-            </figcaption>
-          </figure>
-        </div>
-        <p class="fine center" data-i18n="screens.note">Klik gambar untuk memperbesar. Tampilan dapat berbeda sedikit tergantung versi Windows dan tema.</p>
-      </div>
-    </section>
-
-    <section class="section" id="download">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="dl.eyebrow">Rilis resmi</span>
-          <h2 data-i18n="dl.title">Unduh NetDQM</h2>
-          <p data-i18n="dl.lead">Pilih peran komputer. Installer Windows paling mudah; paket portable tidak memerlukan instalasi. Server Linux dipasang dari source dengan skrip systemd.</p>
-        </div>
-
-        <div class="download-grid">
-          <article class="download-card">
-            <div class="role-head">
-              <div class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
-              </div>
-              <span class="tag" data-i18n="dl.windows">Windows x64</span>
-            </div>
-            <h3 data-i18n="dl.agent.title">Agent Siswa</h3>
-            <p data-i18n="dl.agent.desc">Berjalan di setiap komputer siswa sebagai ikon tray. Menyambung ke server, mengirim thumbnail, dan menerima perintah guru.</p>
-            <div class="dl-actions">
-              <a class="btn btn-primary btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Agent-windows-x64-setup.exe" data-i18n="dl.windowsInstaller">Installer Windows</a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Agent-windows-x64-portable.zip" data-i18n="dl.portable">Portable ZIP</a>
-            </div>
-            <p class="file">NetDQM-Agent-windows-x64-setup.exe · ±52 MB</p>
-            <p class="fine" data-i18n="dl.agent.note">Autostart dapat diaktifkan saat instalasi atau dari jendela Pengaturan agent.</p>
-          </article>
-
-          <article class="download-card">
-            <div class="role-head">
-              <div class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v11H4z"/><path d="M9 20h6M12 16v4"/><path d="M9 10l2 2 4-4"/></svg>
-              </div>
-              <span class="tag" data-i18n="dl.windows">Windows x64</span>
-            </div>
-            <h3 data-i18n="dl.console.title">Konsol Guru</h3>
-            <p data-i18n="dl.console.desc">Aplikasi guru untuk memantau, mengendalikan, mengajar, dan menilai. Satu konsol terhubung ke satu ruangan.</p>
-            <div class="dl-actions">
-              <a class="btn btn-primary btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Console-windows-x64-setup.exe" data-i18n="dl.windowsInstaller">Installer Windows</a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Console-windows-x64-portable.zip" data-i18n="dl.portable">Portable ZIP</a>
-            </div>
-            <p class="file">NetDQM-Console-windows-x64-setup.exe · ±52 MB</p>
-            <p class="fine" data-i18n="dl.console.note">Membutuhkan alamat server, port, password, dan nama ruangan yang sama dengan agent.</p>
-          </article>
-
-          <article class="download-card">
-            <div class="role-head">
-              <div class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h18v5H3zM3 14h18v5H3z"/><path d="M7 7h.01M7 16h.01"/></svg>
-              </div>
-              <span class="tag" data-i18n="dl.serverTag">Linux / Windows</span>
-            </div>
-            <h3 data-i18n="dl.server.title">Server</h3>
-            <p data-i18n="dl.server.desc">Pusat koneksi, database SQLite, kuis, absensi, dan distribusi pembaruan. Satu server dapat melayani banyak ruangan.</p>
-            <div class="dl-actions">
-              <a class="btn btn-primary btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Server-linux-x64.tar.gz" data-i18n="dl.linuxSource">Linux (tar.gz)</a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Server-windows-x64-setup.exe" data-i18n="dl.windowsInstaller">Windows installer</a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/NetDQM-Server-windows-x64-portable.zip" data-i18n="dl.portable">Portable ZIP</a>
-            </div>
-            <p class="file">NetDQM-Server-linux-x64.tar.gz · ±0,2 MB</p>
-            <p class="fine" data-i18n="dl.server.note">Paket Linux berisi skrip pemasang systemd. Server Windows bersifat opsional untuk uji coba atau lab kecil.</p>
-          </article>
-        </div>
-
-        <div class="download-tools">
-          <a class="text-link" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest/download/SHA256SUMS.txt" data-i18n="dl.checksums">Checksum SHA-256</a>
-          <a class="text-link" href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest" data-i18n="dl.releases">Semua rilis</a>
-          <a class="text-link" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/DOWNLOAD.md" data-i18n="dl.guide">Panduan unduh</a>
-          <a class="text-link" href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
-        </div>
-
-        <div class="notice">
-          <div class="notice-icon" aria-hidden="true">!</div>
-          <div>
-            <strong data-i18n="dl.smartscreen.title">Executable belum ditandatangani</strong>
-            <p data-i18n-html="dl.smartscreen.text">Windows SmartScreen dapat menampilkan peringatan saat file pertama kali dibuka. Klik <em>More info</em> lalu <em>Run anyway</em> hanya jika file berasal dari rilis resmi NetDQM. Bandingkan checksum dengan SHA256SUMS.txt bila ragu.</p>
-            <pre class="code-inline"><code>certutil -hashfile NetDQM-Agent-windows-x64-setup.exe SHA256</code></pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="start">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow" data-i18n="start.eyebrow">Dalam tiga langkah</span>
-          <h2 data-i18n="start.title">Mulai kelas pertama</h2>
-          <p data-i18n="start.lead">Siapkan server di satu komputer, pasang konsol di komputer guru, lalu pasang agent di setiap komputer siswa. Semua harus berada di jaringan lab yang sama.</p>
-        </div>
-        <ol class="steps">
-          <li>
-            <span class="step-number">1</span>
-            <div>
-              <h3 data-i18n="start.step1.title">Siapkan server</h3>
-              <p data-i18n="start.step1.desc">Di Linux, ekstrak paket lalu jalankan pemasang. Pemasang membuat pengguna sistem, virtual environment, konfigurasi, dan layanan systemd.</p>
-              <pre><code>tar -xzf NetDQM-Server-linux-x64.tar.gz
-cd NetDQM-Server-*
-sudo ./install-server.sh</code></pre>
-              <p class="fine" data-i18n-html="start.step1.windows">Di Windows: jalankan installer server, lalu buka <strong>NetDQM Server</strong> dari Start Menu. Installer menambahkan aturan firewall TCP 47800.</p>
-              <pre><code>sudo -u netdqm /opt/netdqm-server/app/.venv/bin/python -m netdqm.server \
-  --config /etc/netdqm/server.json add-room LAB-A --name "Lab A"</code></pre>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">2</span>
-            <div>
-              <h3 data-i18n="start.step2.title">Hubungkan konsol guru</h3>
-              <p data-i18n="start.step2.desc">Pasang konsol, buka aplikasi, lalu isi alamat server, port, password, nama tutor, dan ruangan.</p>
-              <pre><code>Alamat server : 192.168.1.10
-Port          : 47800
-Ruangan       : LAB-A</code></pre>
-              <p class="fine" data-i18n-html="start.step2.note">Klik <strong>Hubungkan</strong>. Kartu siswa akan muncul saat agent terhubung.</p>
-            </div>
-          </li>
-          <li>
-            <span class="step-number">3</span>
-            <div>
-              <h3 data-i18n="start.step3.title">Pasang agent siswa</h3>
-              <p data-i18n="start.step3.desc">Pasang agent di setiap komputer siswa. Buka ikon NetDQM di tray, pilih <strong>Pengaturan</strong>, dan isi alamat yang sama.</p>
-              <pre><code>Alamat server : 192.168.1.10
-Port          : 47800
-Ruangan       : LAB-A</code></pre>
-              <p class="fine" data-i18n-html="start.step3.note">Aktifkan <strong>Jalankan otomatis saat login</strong> agar agent langsung menyambung setiap komputer dinyalakan.</p>
-            </div>
-          </li>
-        </ol>
-        <p class="tip" data-i18n-html="start.tip"><strong>Uji dulu di satu lab.</strong> Pastikan server memakai IP statis atau DHCP reservation sebelum rollout ke semua ruangan. Port default adalah TCP 47800.</p>
-      </div>
-    </section>
-
-    <section class="section" id="security">
+<section class="section" id="security">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow" data-i18n="security.eyebrow">Dibuat untuk jaringan lab</span>
@@ -364,7 +132,7 @@ Ruangan       : LAB-A</code></pre>
   <footer class="site-footer">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="#top">
+        <a class="brand" href="index.html">
           <img src="assets/logo.png" alt="" width="32" height="32">
           <span>NetDQM</span>
         </a>
@@ -372,9 +140,9 @@ Ruangan       : LAB-A</code></pre>
       </div>
       <div>
         <h4 data-i18n="footer.product">Produk</h4>
-        <a href="#features" data-i18n="nav.features">Fitur</a>
-        <a href="#download" data-i18n="nav.download">Unduh</a>
-        <a href="#start" data-i18n="nav.start">Mulai</a>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start">Mulai</a>
         <a href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
         <a href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest" data-i18n="dl.releases">Semua rilis</a>
       </div>
@@ -396,14 +164,6 @@ Ruangan       : LAB-A</code></pre>
       <span data-i18n="footer.copy">© 2026 NetDQM contributors.</span>
     </div>
   </footer>
-
-  <div class="lightbox" id="lightbox" hidden>
-    <button type="button" class="lightbox-close" data-i18n-label="lightbox.close" aria-label="Tutup">×</button>
-    <figure>
-      <img id="lightbox-image" src="" alt="">
-      <figcaption id="lightbox-caption"></figcaption>
-    </figure>
-  </div>
 
   <script src="assets/app.js"></script>
 </body>

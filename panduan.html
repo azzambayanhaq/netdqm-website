@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Panduan Penggunaan NetDQM</title>
+  <title>Panduan — NetDQM</title>
   <meta name="description" content="Panduan memasang dan menggunakan NetDQM di lab komputer: server, konsol guru, agent siswa, dan fitur kelas.">
   <meta name="theme-color" content="#070d18">
   <link rel="canonical" href="https://netdqm.vercel.app/panduan.html">
@@ -33,17 +33,22 @@
     @media (max-width: 820px) { .guide-layout { grid-template-columns: 1fr; } .guide-toc { position: static; } }
   </style>
 </head>
-<body>
+<body data-page-title="page.tutorial.title">
   <a class="skip-link" href="#main">Lewati ke konten</a>
-  <header class="site-header">
+    <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="index.html" aria-label="NetDQM">
-        <img src="assets/logo.png" alt="" width="36" height="36"><span>NetDQM</span>
+        <img src="assets/logo.png" alt="" width="36" height="36">
+        <span>NetDQM</span>
       </a>
       <nav class="nav-links" aria-label="Navigasi utama">
-        <a href="index.html#download">Unduh</a>
-        <a href="index.html#features">Fitur</a>
-        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md">Tutorial lengkap</a>
+        <a href="index.html" data-i18n="nav.home">Beranda</a>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="screenshots.html" data-i18n="nav.screens">Tangkapan Layar</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start">Mulai</a>
+        <a href="panduan.html" data-i18n="nav.tutorial" class="active" aria-current="page">Panduan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website" target="_blank" rel="noopener">GitHub</a>
       </nav>
       <div class="nav-tools">
         <button type="button" class="theme-toggle" data-theme-toggle aria-label="Ganti ke tema terang" title="Ganti ke tema terang" aria-pressed="false">
@@ -51,7 +56,10 @@
           <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
           <span data-theme-label>Terang</span>
         </button>
-        <a class="btn btn-primary btn-sm" href="index.html#download">Unduh aplikasi</a>
+        <div class="lang" role="group" aria-label="Bahasa / Language" data-i18n-label="lang.label">
+          <button type="button" data-lang="id" class="active" aria-pressed="true">ID</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
     </div>
   </header>
@@ -62,7 +70,7 @@
         <h1>Mulai mengelola kelas dengan NetDQM</h1>
         <p class="lead">Ikuti panduan singkat untuk menyiapkan server, menghubungkan konsol guru dan agent siswa, lalu memakai fitur utama saat kelas berlangsung.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="index.html#download">Pilih installer atau portable</a>
+          <a class="btn btn-primary" href="download.html">Pilih installer atau portable</a>
           <a class="btn btn-ghost" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md">Baca tutorial Windows lengkap</a>
         </div>
       </div>
@@ -149,8 +157,40 @@ sudo ./install-server.sh</code></pre>
       </aside>
     </div>
   </main>
-  <footer class="site-footer">
-    <div class="wrap footer-bottom"><span>© 2026 NetDQM contributors.</span><a href="index.html">Kembali ke situs NetDQM</a></div>
+    <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.png" alt="" width="32" height="32">
+          <span>NetDQM</span>
+        </a>
+        <p data-i18n="footer.tagline">Manajemen kelas original untuk lab komputer. Dibuat dengan Python, PySide6, dan asyncio.</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.product">Produk</h4>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start">Mulai</a>
+        <a href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest" data-i18n="dl.releases">Semua rilis</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.docs">Dokumentasi</h4>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/DOWNLOAD.md" data-i18n="dl.guide">Panduan unduh</a>
+        <a href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/SECURITY.md" data-i18n="footer.security">Keamanan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website" data-i18n="footer.websiteRepo">Repositori situs</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/issues" data-i18n="footer.issues">Laporan masalah</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.licenseTitle">Lisensi</h4>
+        <p data-i18n="footer.license">MIT License. Bebas dipakai, diubah, dan didistribusikan dengan tetap menyertakan pemberitahuan hak cipta.</p>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span data-i18n="footer.copy">© 2026 NetDQM contributors.</span>
+    </div>
   </footer>
 </body>
 </html>

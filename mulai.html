@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mulai — NetDQM</title>
+  <meta name="description" content="NetDQM adalah aplikasi manajemen kelas original untuk lab komputer: pantau layar siswa, remote control, siaran, chat, transfer file, kuis, dan absensi. Gratis, open source, MIT.">
+  <meta name="theme-color" content="#070d18">
+  <link rel="canonical" href="https://netdqm.vercel.app/mulai.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mulai — NetDQM">
+  <meta property="og:description" content="Pantau dan kendalikan lab komputer dari satu konsol guru. Windows + Linux, open source, MIT.">
+  <meta property="og:url" content="https://netdqm.vercel.app/mulai.html">
+  <meta property="og:image" content="https://netdqm.vercel.app/assets/screenshots/console.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page-title="page.start.title">
+  <a class="skip-link" href="#main" data-i18n="skip">Lewati ke konten</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="NetDQM">
+        <img src="assets/logo.png" alt="" width="36" height="36">
+        <span>NetDQM</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigasi utama">
+        <a href="index.html" data-i18n="nav.home">Beranda</a>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="screenshots.html" data-i18n="nav.screens">Tangkapan Layar</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start" class="active" aria-current="page">Mulai</a>
+        <a href="panduan.html" data-i18n="nav.tutorial">Panduan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <div class="nav-tools">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Ganti ke tema terang" title="Ganti ke tema terang" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+          <span data-theme-label>Terang</span>
+        </button>
+        <div class="lang" role="group" aria-label="Bahasa / Language" data-i18n-label="lang.label">
+          <button type="button" data-lang="id" class="active" aria-pressed="true">ID</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+<section class="section section-alt" id="start">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow" data-i18n="start.eyebrow">Dalam tiga langkah</span>
+          <h2 data-i18n="start.title">Mulai kelas pertama</h2>
+          <p data-i18n="start.lead">Siapkan server di satu komputer, pasang konsol di komputer guru, lalu pasang agent di setiap komputer siswa. Semua harus berada di jaringan lab yang sama.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">1</span>
+            <div>
+              <h3 data-i18n="start.step1.title">Siapkan server</h3>
+              <p data-i18n="start.step1.desc">Di Linux, ekstrak paket lalu jalankan pemasang. Pemasang membuat pengguna sistem, virtual environment, konfigurasi, dan layanan systemd.</p>
+              <pre><code>tar -xzf NetDQM-Server-linux-x64.tar.gz
+cd NetDQM-Server-*
+sudo ./install-server.sh</code></pre>
+              <p class="fine" data-i18n-html="start.step1.windows">Di Windows: jalankan installer server, lalu buka <strong>NetDQM Server</strong> dari Start Menu. Installer menambahkan aturan firewall TCP 47800.</p>
+              <pre><code>sudo -u netdqm /opt/netdqm-server/app/.venv/bin/python -m netdqm.server \
+  --config /etc/netdqm/server.json add-room LAB-A --name "Lab A"</code></pre>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">2</span>
+            <div>
+              <h3 data-i18n="start.step2.title">Hubungkan konsol guru</h3>
+              <p data-i18n="start.step2.desc">Pasang konsol, buka aplikasi, lalu isi alamat server, port, password, nama tutor, dan ruangan.</p>
+              <pre><code>Alamat server : 192.168.1.10
+Port          : 47800
+Ruangan       : LAB-A</code></pre>
+              <p class="fine" data-i18n-html="start.step2.note">Klik <strong>Hubungkan</strong>. Kartu siswa akan muncul saat agent terhubung.</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">3</span>
+            <div>
+              <h3 data-i18n="start.step3.title">Pasang agent siswa</h3>
+              <p data-i18n="start.step3.desc">Pasang agent di setiap komputer siswa. Buka ikon NetDQM di tray, pilih <strong>Pengaturan</strong>, dan isi alamat yang sama.</p>
+              <pre><code>Alamat server : 192.168.1.10
+Port          : 47800
+Ruangan       : LAB-A</code></pre>
+              <p class="fine" data-i18n-html="start.step3.note">Aktifkan <strong>Jalankan otomatis saat login</strong> agar agent langsung menyambung setiap komputer dinyalakan.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="tip" data-i18n-html="start.tip"><strong>Uji dulu di satu lab.</strong> Pastikan server memakai IP statis atau DHCP reservation sebelum rollout ke semua ruangan. Port default adalah TCP 47800.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <img src="assets/logo.png" alt="" width="32" height="32">
+          <span>NetDQM</span>
+        </a>
+        <p data-i18n="footer.tagline">Manajemen kelas original untuk lab komputer. Dibuat dengan Python, PySide6, dan asyncio.</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.product">Produk</h4>
+        <a href="fitur.html" data-i18n="nav.features">Fitur</a>
+        <a href="download.html" data-i18n="nav.download">Unduh</a>
+        <a href="mulai.html" data-i18n="nav.start">Mulai</a>
+        <a href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-downloads/releases/latest" data-i18n="dl.releases">Semua rilis</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.docs">Dokumentasi</h4>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/DOWNLOAD.md" data-i18n="dl.guide">Panduan unduh</a>
+        <a href="panduan.html" data-i18n="nav.tutorial">Tutorial penggunaan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/SECURITY.md" data-i18n="footer.security">Keamanan</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website" data-i18n="footer.websiteRepo">Repositori situs</a>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/issues" data-i18n="footer.issues">Laporan masalah</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.licenseTitle">Lisensi</h4>
+        <p data-i18n="footer.license">MIT License. Bebas dipakai, diubah, dan didistribusikan dengan tetap menyertakan pemberitahuan hak cipta.</p>
+        <a href="https://github.com/azzambayanhaq/netdqm-website/blob/main/LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span data-i18n="footer.copy">© 2026 NetDQM contributors.</span>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

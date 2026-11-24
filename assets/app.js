@@ -4,7 +4,14 @@ const I18N = {
   id: {
     "meta.title": "NetDQM — Manajemen Lab Komputer Original",
     "meta.description": "NetDQM adalah aplikasi manajemen kelas original untuk lab komputer: pantau layar siswa, remote control, siaran, chat, transfer file, kuis, dan absensi. Gratis, open source, MIT.",
+    "page.home.title": "NetDQM — Manajemen Lab Komputer Original",
+    "page.features.title": "Fitur — NetDQM",
+    "page.screens.title": "Tangkapan Layar — NetDQM",
+    "page.download.title": "Unduh — NetDQM",
+    "page.start.title": "Mulai — NetDQM",
+    "page.tutorial.title": "Panduan — NetDQM",
     "skip": "Lewati ke konten",
+    "nav.home": "Beranda",
     "nav.features": "Fitur",
     "nav.screens": "Tangkapan Layar",
     "nav.download": "Unduh",
@@ -113,7 +120,14 @@ const I18N = {
   en: {
     "meta.title": "NetDQM — Original Classroom Management for Computer Labs",
     "meta.description": "NetDQM is original classroom management software for computer labs: live student screens, remote control, screen broadcast, chat, file transfer, quizzes, and attendance. Free, open source, MIT.",
+    "page.home.title": "NetDQM — Original Classroom Management for Computer Labs",
+    "page.features.title": "Features — NetDQM",
+    "page.screens.title": "Screenshots — NetDQM",
+    "page.download.title": "Download — NetDQM",
+    "page.start.title": "Get Started — NetDQM",
+    "page.tutorial.title": "Usage Guide — NetDQM",
     "skip": "Skip to content",
+    "nav.home": "Home",
     "nav.features": "Features",
     "nav.screens": "Screenshots",
     "nav.download": "Download",
@@ -246,7 +260,9 @@ function applyLanguage(lang) {
   const dict = I18N[currentLang];
 
   document.documentElement.lang = currentLang;
-  document.title = dict["meta.title"];
+  const pageTitleKey = document.body ? document.body.getAttribute("data-page-title") : "";
+  const pageTitle = pageTitleKey ? dict[pageTitleKey] : "";
+  document.title = pageTitle || dict["meta.title"];
 
   const description = document.querySelector('meta[name="description"]');
   if (description) description.setAttribute("content", dict["meta.description"]);

@@ -211,6 +211,13 @@ code, pre {
   color: var(--text);
 }
 
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
 .lang {
   display: inline-flex;
   padding: 3px;

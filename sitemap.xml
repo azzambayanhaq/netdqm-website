@@ -6,6 +6,26 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://netdqm.vercel.app/fitur.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://netdqm.vercel.app/screenshots.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://netdqm.vercel.app/download.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://netdqm.vercel.app/mulai.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://netdqm.vercel.app/panduan.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
