@@ -318,24 +318,29 @@ Salin `dist\NetDQM-update-1.1.0.zip` ke folder `updatepatch\` di server Windows
 (satu folder dengan `server.json`), atau unggah dari console guru lewat
 **Berkas > Pembaruan Jaringan...**.
 
-Perilaku default:
+Alur pembaruan:
 
 - Server memeriksa folder `updatepatch\` setiap 60 detik.
-- Bila ZIP lebih baru, server memasang pembaruan untuk dirinya sendiri lalu
-  memulai ulang. Client akan menyambung ulang otomatis.
-- Agent yang versinya lebih lama langsung diarahkan mengunduh pembaruan,
-  memverifikasi SHA-256, mengganti executable-nya, dan mulai ulang. Siswa tidak
-  perlu melakukan apa pun.
-- Console guru menampilkan pemberitahuan di status bar; pembaruan dipasang
-  hanya setelah operator menekan **Perbarui Console Ini**.
+- Bundel rilis menyertakan server Windows dan source server Linux. Jika versi
+  lebih baru, server yang cocok memasang payload-nya lalu memulai ulang; client
+  akan menyambung ulang otomatis.
+- Agent yang versinya lebih lama menampilkan pemberitahuan. Siswa memilih
+  **Perbarui sekarang** atau **Nanti**; update yang ditunda dapat dibuka lagi
+  dari menu tray. Setelah checksum diverifikasi, Agent menutup dan berjalan
+  kembali dengan versi baru.
+- Console guru menampilkan pemberitahuan dengan tombol **Perbarui sekarang**.
+  Setelah operator memilihnya dan unduhan selesai, Console menutup lalu
+  berjalan kembali dengan versi baru. Dialog **Berkas > Pembaruan Jaringan**
+  tetap tersedia untuk melihat status dan memulai update secara manual.
 
-Untuk rollout manual (tanpa otomatis), ubah `server.json`:
+Untuk mematikan tawaran otomatis saat Agent tersambung, ubah `server.json`:
 
 ```json
 "updates": { "auto_client_update": false }
 ```
 
-lalu gunakan tombol **Perbarui Semua Siswa** di dialog pembaruan.
+Guru tetap dapat mengirim tawaran melalui **Perbarui Semua Siswa** di dialog
+pembaruan. Agent akan meminta persetujuan sebelum mulai mengunduh.
 
 Catatan:
 

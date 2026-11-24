@@ -315,6 +315,14 @@ NetDQM memakai pembaruan terpusat berbasis bundel ZIP:
    guru melalui **Berkas → Pembaruan Jaringan...**.
 3. Server memverifikasi SHA-256, memasang pembaruan dirinya sendiri, lalu
    mengirim payload ke konsol/agent yang lebih lama.
+4. Agent dan Console memberi tahu pengguna. Agent meminta siswa memilih
+   **Perbarui sekarang** atau **Nanti**. Pada Console, guru dapat memilih
+   **Perbarui sekarang** dari pemberitahuan atau memakai **Perbarui Console Ini**
+   di dialog update. Setelah pemasangan, aplikasi akan dimulai ulang otomatis.
+
+Untuk versi yang sudah terpasang, guru/operator perlu mengunggah bundel
+`NetDQM-update-<versi>.zip` dari halaman rilis ke server melalui Console.
+Untuk pemasangan baru, gunakan installer terbaru yang tersedia di halaman rilis.
 
 Lihat bagian **Pembaruan Terpusat** pada dokumentasi internal aplikasi untuk
 perintah lengkap.
