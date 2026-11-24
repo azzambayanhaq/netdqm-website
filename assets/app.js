@@ -10,6 +10,12 @@ const I18N = {
     "page.download.title": "Unduh — NetDQM",
     "page.start.title": "Mulai — NetDQM",
     "page.tutorial.title": "Panduan — NetDQM",
+    "guide.hero.eyebrow": "Panduan penggunaan",
+    "guide.hero.title": "Mulai mengelola kelas dengan NetDQM",
+    "guide.hero.lead": "Ikuti panduan singkat untuk menyiapkan server, menghubungkan konsol guru dan agent siswa, lalu memakai fitur utama saat kelas berlangsung.",
+    "guide.hero.cta1": "Pilih installer atau portable",
+    "guide.hero.cta2": "Baca tutorial Windows lengkap",
+    "guide.toc.aria": "Daftar isi panduan",
     "skip": "Lewati ke konten",
     "nav.home": "Beranda",
     "nav.features": "Fitur",
@@ -126,6 +132,12 @@ const I18N = {
     "page.download.title": "Download — NetDQM",
     "page.start.title": "Get Started — NetDQM",
     "page.tutorial.title": "Usage Guide — NetDQM",
+    "guide.hero.eyebrow": "Usage guide",
+    "guide.hero.title": "Start managing your classroom with NetDQM",
+    "guide.hero.lead": "Follow this short guide to prepare the server, connect the teacher console and student agents, then use the main features during class.",
+    "guide.hero.cta1": "Choose an installer or portable build",
+    "guide.hero.cta2": "Read the full Windows tutorial",
+    "guide.toc.aria": "Guide contents",
     "skip": "Skip to content",
     "nav.home": "Home",
     "nav.features": "Features",
@@ -222,6 +234,85 @@ const I18N = {
     "security.privacy.desc": "No data is sent to third parties. Databases, logs, recordings, and configuration stay on your own server and client computers.",
     "security.lan.title": "LAN only",
     "security.lan.desc": "Run the server on a managed classroom network, restrict port 47800 with a firewall, and never expose it to the internet.",
+    "guide.content": `
+        <section id="persiapan">
+          <h2>1. Prepare the lab network</h2>
+          <p>NetDQM consists of one <strong>server</strong>, one teacher console, and an agent on each student computer. All of them must be able to communicate over the same local network. The default port is <strong>TCP 47800</strong>.</p>
+          <div class="guide-callout">Use a static IP address or DHCP reservation for the server. The example address in this guide is <code>192.168.1.10</code>; replace it with your server address. Do not expose the server port directly to the internet.</div>
+          <p>Download the Windows installer for a normal installation. To try it without installing, download the portable ZIP, extract it to a permanent folder, and run the application file inside. Windows computers do not need Python.</p>
+        </section>
+        <section id="server">
+          <h2>2. Run the server</h2>
+          <h3>Linux server</h3>
+          <p>Extract the Linux server package and run the installer. The installer sets up the systemd service and configuration, then asks for the server password.</p>
+          <pre><code>tar -xzf NetDQM-Server-linux-x64.tar.gz
+cd NetDQM-Server-*
+sudo ./install-server.sh</code></pre>
+          <p>To check the service, run <code>systemctl status netdqm-server</code>. The firewall must allow TCP 47800 from the lab subnet.</p>
+          <h3>Windows server</h3>
+          <p>Run the Server installer, then open <strong>NetDQM Server</strong> from the Start Menu. On first use, create the server password. The installer adds the TCP 47800 firewall rule.</p>
+          <p>Leave the server window running during class. Store the password safely; the teacher console and agents must use the same password.</p>
+        </section>
+        <section id="konsol">
+          <h2>3. Connect the teacher console</h2>
+          <ol>
+            <li>Install or extract <strong>NetDQM Console</strong> on the teacher computer, then run the application.</li>
+            <li>Enter the server address and port <code>47800</code>.</li>
+            <li>Enter the server password, teacher name, and room ID, for example <code>LAB-A</code>.</li>
+            <li>Click <strong>Connect</strong>. Student computer cards appear after agents connect.</li>
+          </ol>
+          <p>The room name must match on the server, console, and every agent that should join that class.</p>
+        </section>
+        <section id="agent">
+          <h2>4. Connect student computers</h2>
+          <ol>
+            <li>Install or extract <strong>NetDQM Agent</strong> on every student computer.</li>
+            <li>Run the agent, then open the NetDQM icon in the notification area and choose <strong>Settings</strong>.</li>
+            <li>Enter the server address, port, password, computer name, and the same room as the console.</li>
+            <li>Save the settings. Enable autostart so the agent runs when the student signs in to Windows.</li>
+          </ol>
+          <p>If the tray icon is not visible, check the hidden icons in the taskbar or use the agent control window.</p>
+        </section>
+        <section id="fitur">
+          <h2>5. Use classroom features</h2>
+          <table class="guide-table">
+            <thead><tr><th>Feature</th><th>How to start</th></tr></thead>
+            <tbody>
+              <tr><td>Select students</td><td>Click a student card. Use Ctrl+click to select multiple students or the search box to find a computer.</td></tr>
+              <tr><td>View screen</td><td>Double-click a card or choose <strong>Remote &amp; Monitor</strong>. Enable input control only when needed.</td></tr>
+              <tr><td>Screen broadcast</td><td>Choose <strong>Screen Broadcast</strong>, select the whole class or selected students, then start the broadcast.</td></tr>
+              <tr><td>Chat and files</td><td>Use the Chat tab to send messages. Select students and use <strong>Send File</strong> to share teaching materials.</td></tr>
+              <tr><td>Lock or blank</td><td>Select computers and use Lock Screen or Blank. Remove the lock after the activity ends.</td></tr>
+              <tr><td>Quizzes</td><td>Open <strong>Manage Quizzes</strong>, create multiple-choice questions, save, then start the quiz and monitor answers.</td></tr>
+              <tr><td>Attendance</td><td>Open <strong>Attendance</strong> to view attendance and export the list to CSV.</td></tr>
+            </tbody>
+          </table>
+          <div class="guide-callout">Test connections, chat, a small file, and one quiz on a few computers before installing agents across the whole lab. Tell students before using screen control or power actions.</div>
+        </section>
+        <section id="troubleshooting">
+          <h2>6. If student computers do not appear</h2>
+          <ul>
+            <li>Make sure the server is running and reachable from the lab network.</li>
+            <li>Make sure the firewall allows TCP 47800.</li>
+            <li>Match the server address, password, and room name on every computer.</li>
+            <li>Restart the agent after changing settings.</li>
+            <li>Check the download guide for checksum verification and installation help.</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn btn-ghost" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/DOWNLOAD.md">Download and installation guide</a>
+            <a class="btn btn-ghost" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md">Full Windows tutorial</a>
+          </div>
+        </section>
+      `,
+    "guide.toc": `
+        <strong>In this guide</strong>
+        <a href="#persiapan">Network preparation</a>
+        <a href="#server">Run the server</a>
+        <a href="#konsol">Connect the console</a>
+        <a href="#agent">Connect student agents</a>
+        <a href="#fitur">Classroom features</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+      `,
     "footer.tagline": "Original classroom management for computer labs. Built with Python, PySide6, and asyncio.",
     "footer.product": "Product",
     "footer.docs": "Documentation",
@@ -274,7 +365,10 @@ function applyLanguage(lang) {
 
   document.querySelectorAll("[data-i18n-html]").forEach((element) => {
     const key = element.getAttribute("data-i18n-html");
-    if (dict[key]) element.innerHTML = dict[key];
+    if (!element.dataset.i18nHtmlOriginal) {
+      element.dataset.i18nHtmlOriginal = element.innerHTML;
+    }
+    element.innerHTML = dict[key] || element.dataset.i18nHtmlOriginal;
   });
 
   document.querySelectorAll("[data-i18n-label]").forEach((element) => {

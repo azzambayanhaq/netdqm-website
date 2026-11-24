@@ -34,7 +34,7 @@
   </style>
 </head>
 <body data-page-title="page.tutorial.title">
-  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Lewati ke konten</a>
     <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="index.html" aria-label="NetDQM">
@@ -66,17 +66,17 @@
   <main id="main">
     <section class="guide-hero">
       <div class="wrap">
-        <span class="eyebrow">Panduan penggunaan</span>
-        <h1>Mulai mengelola kelas dengan NetDQM</h1>
-        <p class="lead">Ikuti panduan singkat untuk menyiapkan server, menghubungkan konsol guru dan agent siswa, lalu memakai fitur utama saat kelas berlangsung.</p>
+        <span class="eyebrow" data-i18n="guide.hero.eyebrow">Panduan penggunaan</span>
+        <h1 data-i18n="guide.hero.title">Mulai mengelola kelas dengan NetDQM</h1>
+        <p class="lead" data-i18n="guide.hero.lead">Ikuti panduan singkat untuk menyiapkan server, menghubungkan konsol guru dan agent siswa, lalu memakai fitur utama saat kelas berlangsung.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="download.html">Pilih installer atau portable</a>
-          <a class="btn btn-ghost" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md">Baca tutorial Windows lengkap</a>
+          <a class="btn btn-primary" href="download.html" data-i18n="guide.hero.cta1">Pilih installer atau portable</a>
+          <a class="btn btn-ghost" href="https://github.com/azzambayanhaq/netdqm-website/blob/main/TUTORIAL-WINDOWS.md" data-i18n="guide.hero.cta2">Baca tutorial Windows lengkap</a>
         </div>
       </div>
     </section>
     <div class="wrap guide-layout">
-      <article class="guide-content">
+      <article class="guide-content" data-i18n-html="guide.content">
         <section id="persiapan">
           <h2>1. Persiapkan jaringan lab</h2>
           <p>NetDQM terdiri dari satu <strong>server</strong>, satu konsol guru, dan agent pada tiap komputer siswa. Semuanya harus dapat berkomunikasi melalui jaringan lokal yang sama. Port bawaan adalah <strong>TCP 47800</strong>.</p>
@@ -146,7 +146,7 @@ sudo ./install-server.sh</code></pre>
           </div>
         </section>
       </article>
-      <aside class="guide-toc" aria-label="Daftar isi panduan">
+      <aside class="guide-toc" aria-label="Daftar isi panduan" data-i18n-label="guide.toc.aria" data-i18n-html="guide.toc">
         <strong>Di panduan ini</strong>
         <a href="#persiapan">Persiapan jaringan</a>
         <a href="#server">Jalankan server</a>
@@ -192,5 +192,6 @@ sudo ./install-server.sh</code></pre>
       <span data-i18n="footer.copy">© 2026 NetDQM contributors.</span>
     </div>
   </footer>
+  <script src="assets/app.js"></script>
 </body>
 </html>
