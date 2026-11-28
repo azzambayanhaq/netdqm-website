@@ -42,8 +42,13 @@
     });
   }
 
-  function applyTheme(theme, save) {
+  let transitionTimer = 0;
+
+  function applyTheme(theme, save, announce = false) {
     const nextTheme = theme === "light" ? "light" : "dark";
+    root.classList.add("is-theme-changing");
+    window.clearTimeout(transitionTimer);
+    transitionTimer = window.setTimeout(() => root.classList.remove("is-theme-changing"), 320);
     root.setAttribute("data-theme", nextTheme);
     updateMetaColor(nextTheme);
     updateButtons();
@@ -56,6 +61,12 @@
         /* Keep the theme for this page even when storage is unavailable. */
       }
     }
+    if (announce && typeof window.netdqmToast === "function") {
+      const isEnglish = root.lang.toLowerCase().startsWith("en");
+      window.netdqmToast(isEnglish
+        ? (nextTheme === "dark" ? "Dark theme enabled" : "Light theme enabled")
+        : (nextTheme === "dark" ? "Tema gelap diaktifkan" : "Tema terang diaktifkan"));
+    }
   }
 
   applyTheme(storedTheme || (media.matches ? "dark" : "light"), false);
@@ -64,7 +75,7 @@
     document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
       button.addEventListener("click", () => {
         const current = root.getAttribute("data-theme");
-        applyTheme(current === "dark" ? "light" : "dark", true);
+        applyTheme(current === "dark" ? "light" : "dark", true, true);
       });
     });
     updateButtons();

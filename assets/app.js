@@ -23,6 +23,10 @@ const I18N = {
     "nav.download": "Unduh",
     "nav.start": "Mulai",
     "nav.tutorial": "Tutorial penggunaan",
+    "nav.menu": "Menu",
+    "nav.open": "Buka menu navigasi",
+    "nav.close": "Tutup menu navigasi",
+    "nav.aria": "Navigasi utama",
     "lang.label": "Bahasa",
     "hero.eyebrow": "Manajemen kelas original",
     "hero.title1": "Lab komputer",
@@ -122,7 +126,13 @@ const I18N = {
     "footer.licenseTitle": "Lisensi",
     "footer.license": "MIT License. Bebas dipakai, diubah, dan didistribusikan dengan tetap menyertakan pemberitahuan hak cipta.",
     "footer.copy": "© 2026 NetDQM contributors.",
-    "lightbox.close": "Tutup"
+    "lightbox.close": "Tutup",
+    "lightbox.previous": "Gambar sebelumnya",
+    "lightbox.next": "Gambar berikutnya",
+    "toast.language.id": "Bahasa Indonesia dipilih",
+    "toast.language.en": "English selected",
+    "toast.theme.dark": "Tema gelap diaktifkan",
+    "toast.theme.light": "Tema terang diaktifkan"
   },
   en: {
     "meta.title": "NetDQM — Original Classroom Management for Computer Labs",
@@ -146,6 +156,10 @@ const I18N = {
     "nav.download": "Download",
     "nav.start": "Get started",
     "nav.tutorial": "Usage guide",
+    "nav.menu": "Menu",
+    "nav.open": "Open navigation menu",
+    "nav.close": "Close navigation menu",
+    "nav.aria": "Main navigation",
     "lang.label": "Language",
     "hero.eyebrow": "Original classroom management",
     "hero.title1": "Your computer lab",
@@ -324,7 +338,13 @@ sudo ./install-server.sh</code></pre>
     "footer.licenseTitle": "License",
     "footer.license": "MIT License. Free to use, modify, and distribute with the copyright notice preserved.",
     "footer.copy": "© 2026 NetDQM contributors.",
-    "lightbox.close": "Close"
+    "lightbox.close": "Close",
+    "lightbox.previous": "Previous screenshot",
+    "lightbox.next": "Next screenshot",
+    "toast.language.id": "Bahasa Indonesia selected",
+    "toast.language.en": "English selected",
+    "toast.theme.dark": "Dark theme enabled",
+    "toast.theme.light": "Light theme enabled"
   }
 };
 
@@ -332,6 +352,11 @@ const STORAGE_KEY = "netdqm.lang";
 let currentLang = "id";
 let lightboxCaptionKey = "";
 let lastFocused = null;
+let previousBodyOverflow = "";
+let currentShotIndex = -1;
+let shotButtons = [];
+let toastTimer = 0;
+let languageTimer = 0;
 
 function detectLang() {
   try {
@@ -348,9 +373,48 @@ function translate(key) {
   return dict[key] || I18N.id[key] || key;
 }
 
-function applyLanguage(lang) {
+function showToast(message) {
+  if (!message) return;
+  let toast = document.getElementById("site-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "site-toast";
+    toast.className = "site-toast";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.setAttribute("aria-atomic", "true");
+    document.body.append(toast);
+  }
+  window.clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.setAttribute("aria-hidden", "false");
+  toast.classList.add("is-visible");
+  toastTimer = window.setTimeout(() => {
+    toast.classList.remove("is-visible");
+    toast.setAttribute("aria-hidden", "true");
+  }, 2600);
+}
+window.netdqmToast = showToast;
+
+function updateMobileNavButton(button, expanded) {
+  const key = expanded ? "nav.close" : "nav.open";
+  button.setAttribute("aria-expanded", expanded ? "true" : "false");
+  button.setAttribute("aria-label", translate(key));
+  button.setAttribute("title", translate(key));
+  button.setAttribute("data-i18n-label", key);
+  const label = button.querySelector("span");
+  if (label) label.textContent = translate(expanded ? "nav.close" : "nav.menu");
+}
+
+function applyLanguage(lang, announce = false) {
   currentLang = I18N[lang] ? lang : "id";
   const dict = I18N[currentLang];
+  document.documentElement.classList.add("is-language-changing");
+  window.clearTimeout(languageTimer);
+  languageTimer = window.setTimeout(
+    () => document.documentElement.classList.remove("is-language-changing"),
+    220
+  );
 
   document.documentElement.lang = currentLang;
   const pageTitleKey = document.body ? document.body.getAttribute("data-page-title") : "";
@@ -375,7 +439,10 @@ function applyLanguage(lang) {
 
   document.querySelectorAll("[data-i18n-label]").forEach((element) => {
     const key = element.getAttribute("data-i18n-label");
-    if (dict[key]) element.setAttribute("aria-label", dict[key]);
+    if (dict[key]) {
+      element.setAttribute("aria-label", dict[key]);
+      if (element.hasAttribute("title")) element.setAttribute("title", dict[key]);
+    }
   });
 
   document.querySelectorAll(".lang button").forEach((button) => {
@@ -383,15 +450,20 @@ function applyLanguage(lang) {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
+  document.querySelectorAll("[data-nav-toggle]").forEach((button) => {
+    updateMobileNavButton(button, button.getAttribute("aria-expanded") === "true");
+  });
 
-  window.dispatchEvent(new Event("netdqm:languagechange"));
-
+  window.dispatchEvent(new CustomEvent("netdqm:languagechange", { detail: { lang: currentLang } }));
   if (lightboxCaptionKey) {
     const caption = translate(lightboxCaptionKey);
     const captionNode = document.getElementById("lightbox-caption");
     const image = document.getElementById("lightbox-image");
     if (captionNode) captionNode.textContent = caption;
-    if (image) image.alt = caption;
+    if (image && shotButtons[currentShotIndex]) {
+      const thumbnail = shotButtons[currentShotIndex].querySelector("img");
+      if (thumbnail) image.alt = thumbnail.alt;
+    }
   }
 
   try {
@@ -399,73 +471,193 @@ function applyLanguage(lang) {
   } catch (error) {
     /* ignore unavailable storage */
   }
+  if (announce) showToast(translate("toast.language." + currentLang));
 }
 
 function setupLanguage() {
   document.querySelectorAll(".lang button").forEach((button) => {
-    button.addEventListener("click", () => {
-      applyLanguage(button.getAttribute("data-lang"));
-    });
+    button.addEventListener("click", () => applyLanguage(button.getAttribute("data-lang"), true));
   });
   applyLanguage(detectLang());
 }
 
-function openLightbox(source, captionKey, altText) {
-  const lightbox = document.getElementById("lightbox");
+function setupMobileNavigation() {
+  const button = document.querySelector("[data-nav-toggle]");
+  const nav = document.getElementById("site-navigation");
+  if (!button || !nav) return;
+
+  const closeMenu = (restoreFocus = false) => {
+    nav.classList.remove("is-open");
+    updateMobileNavButton(button, false);
+    if (restoreFocus) button.focus();
+  };
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    if (expanded) closeMenu();
+    else {
+      nav.classList.add("is-open");
+      updateMobileNavButton(button, true);
+      nav.querySelector("a")?.focus({ preventScroll: true });
+    }
+  });
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) closeMenu();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
+      closeMenu(true);
+    }
+  });
+  window.matchMedia("(min-width: 761px)").addEventListener("change", (event) => {
+    if (event.matches) closeMenu();
+  });
+}
+
+function setupScrollReveal() {
+  const targets = document.querySelectorAll(
+    ".hero-copy, .hero-visual, .server-strip, .feature-card, .shot-card, .download-card, .security-item, .steps > li, .guide-content section, .notice"
+  );
+  if (!targets.length) return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.classList.add("has-reveal");
+  targets.forEach((element, index) => {
+    element.setAttribute("data-reveal", "");
+    element.style.setProperty("--reveal-delay", String(Math.min(index % 4, 3) * 55) + "ms");
+  });
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((element) => element.classList.add("is-revealed"));
+    return;
+  }
+  const observer = new IntersectionObserver((entries, activeObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-revealed");
+        activeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -28px 0px" });
+  targets.forEach((element) => observer.observe(element));
+}
+
+function setupHeroMotion() {
+  const visual = document.querySelector(".hero-visual");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!visual || reducedMotion || !window.matchMedia("(pointer: fine)").matches) return;
+  let frame = 0;
+  visual.addEventListener("pointermove", (event) => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      const bounds = visual.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+      visual.style.setProperty("--pointer-x", String((x * 5).toFixed(2)) + "px");
+      visual.style.setProperty("--pointer-y", String((y * 5).toFixed(2)) + "px");
+      frame = 0;
+    });
+  }, { passive: true });
+  visual.addEventListener("pointerleave", () => {
+    if (frame) cancelAnimationFrame(frame);
+    visual.style.setProperty("--pointer-x", "0px");
+    visual.style.setProperty("--pointer-y", "0px");
+    frame = 0;
+  }, { passive: true });
+}
+
+function showLightboxShot(index) {
+  if (!shotButtons.length) return;
+  currentShotIndex = (index + shotButtons.length) % shotButtons.length;
+  const button = shotButtons[currentShotIndex];
+  const thumbnail = button.querySelector("img");
   const image = document.getElementById("lightbox-image");
   const caption = document.getElementById("lightbox-caption");
-  if (!lightbox || !image || !caption) return;
+  if (!image || !caption || !thumbnail) return;
 
-  lightboxCaptionKey = captionKey;
+  lightboxCaptionKey = button.getAttribute("data-caption") || "";
+  image.src = button.getAttribute("data-full") || thumbnail.currentSrc || thumbnail.src;
+  image.alt = thumbnail.alt;
+  caption.textContent = translate(lightboxCaptionKey);
+
+  [-1, 1].forEach((offset) => {
+    const next = shotButtons[(currentShotIndex + offset + shotButtons.length) % shotButtons.length];
+    const preload = new Image();
+    preload.src = next.getAttribute("data-full") || "";
+  });
+}
+
+function openLightbox(index) {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox) return;
   lastFocused = document.activeElement;
-  image.src = source;
-  image.alt = altText || translate(captionKey);
-  caption.textContent = translate(captionKey);
+  previousBodyOverflow = document.body.style.overflow;
+  showLightboxShot(index);
   lightbox.hidden = false;
   document.body.style.overflow = "hidden";
-
-  const closeButton = lightbox.querySelector(".lightbox-close");
-  if (closeButton) closeButton.focus();
+  lightbox.querySelector(".lightbox-close")?.focus();
 }
 
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   const image = document.getElementById("lightbox-image");
   if (!lightbox || lightbox.hidden) return;
-
   lightbox.hidden = true;
   lightboxCaptionKey = "";
-  document.body.style.overflow = "";
+  currentShotIndex = -1;
+  document.body.style.overflow = previousBodyOverflow;
   if (image) image.src = "";
   if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
 }
 
 function setupLightbox() {
-  document.querySelectorAll(".shot").forEach((button) => {
-    button.addEventListener("click", () => {
-      const source = button.getAttribute("data-full");
-      const captionKey = button.getAttribute("data-caption") || "";
-      const image = button.querySelector("img");
-      openLightbox(source, captionKey, image ? image.alt : "");
-    });
+  shotButtons = Array.from(document.querySelectorAll(".shot"));
+  shotButtons.forEach((button, index) => {
+    button.setAttribute("title", translate(button.getAttribute("data-caption") || ""));
+    button.setAttribute("aria-haspopup", "dialog");
+    button.addEventListener("click", () => openLightbox(index));
   });
 
   const lightbox = document.getElementById("lightbox");
   if (!lightbox) return;
-
+  lightbox.querySelector("[data-lightbox-prev]")?.addEventListener("click", () => showLightboxShot(currentShotIndex - 1));
+  lightbox.querySelector("[data-lightbox-next]")?.addEventListener("click", () => showLightboxShot(currentShotIndex + 1));
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
-
-  const closeButton = lightbox.querySelector(".lightbox-close");
-  if (closeButton) closeButton.addEventListener("click", closeLightbox);
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeLightbox();
+  lightbox.querySelector(".lightbox-close")?.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeLightbox();
+      return;
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showLightboxShot(currentShotIndex - 1);
+      return;
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showLightboxShot(currentShotIndex + 1);
+      return;
+    }
+    if (event.key === "Tab") {
+      const controls = Array.from(lightbox.querySelectorAll("button:not([disabled])"));
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setupLanguage();
+  setupMobileNavigation();
+  setupScrollReveal();
+  setupHeroMotion();
   setupLightbox();
 });

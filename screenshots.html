@@ -26,7 +26,11 @@
         <img src="assets/logo.png" alt="" width="36" height="36">
         <span>NetDQM</span>
       </a>
-      <nav class="nav-links" aria-label="Navigasi utama">
+      <button type="button" class="nav-toggle" data-nav-toggle aria-controls="site-navigation" aria-expanded="false" data-i18n-label="nav.open" aria-label="Buka menu navigasi" title="Buka menu navigasi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span data-i18n="nav.menu">Menu</span>
+      </button>
+      <nav class="nav-links" id="site-navigation" aria-label="Navigasi utama" data-i18n-label="nav.aria">
         <a href="index.html" data-i18n="nav.home">Beranda</a>
         <a href="fitur.html" data-i18n="nav.features">Fitur</a>
         <a href="screenshots.html" data-i18n="nav.screens" class="active" aria-current="page">Tangkapan Layar</a>
@@ -58,7 +62,7 @@
         </div>
         <div class="shot-grid">
           <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/console.png" data-caption="screens.console.title">
+            <button type="button" class="shot" data-full="assets/screenshots/console.png" data-caption="screens.console.title" data-i18n-label="screens.console.title" aria-label="Konsol guru" title="Konsol guru">
               <img src="assets/screenshots/console.png" alt="Konsol guru dengan kartu siswa dan chat" width="1440" height="900" loading="lazy">
             </button>
             <figcaption>
@@ -67,7 +71,7 @@
             </figcaption>
           </figure>
           <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/remote.png" data-caption="screens.remote.title">
+            <button type="button" class="shot" data-full="assets/screenshots/remote.png" data-caption="screens.remote.title" data-i18n-label="screens.remote.title" aria-label="Remote & pantau" title="Remote & pantau">
               <img src="assets/screenshots/remote.png" alt="Jendela remote control menampilkan layar siswa" width="1400" height="820" loading="lazy">
             </button>
             <figcaption>
@@ -76,7 +80,7 @@
             </figcaption>
           </figure>
           <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/quiz.png" data-caption="screens.quiz.title">
+            <button type="button" class="shot" data-full="assets/screenshots/quiz.png" data-caption="screens.quiz.title" data-i18n-label="screens.quiz.title" aria-label="Kelola kuis" title="Kelola kuis">
               <img src="assets/screenshots/quiz.png" alt="Dialog kuis dengan daftar kuis dan tombol mulai" width="920" height="650" loading="lazy">
             </button>
             <figcaption>
@@ -85,7 +89,7 @@
             </figcaption>
           </figure>
           <figure class="shot-card">
-            <button type="button" class="shot" data-full="assets/screenshots/attendance.png" data-caption="screens.attendance.title">
+            <button type="button" class="shot" data-full="assets/screenshots/attendance.png" data-caption="screens.attendance.title" data-i18n-label="screens.attendance.title" aria-label="Absensi harian" title="Absensi harian">
               <img src="assets/screenshots/attendance.png" alt="Tabel absensi siswa dengan status online" width="1000" height="760" loading="lazy">
             </button>
             <figcaption>
@@ -98,12 +102,14 @@
       </div>
     </section>
   </main>
-  <div class="lightbox" id="lightbox" hidden>
-    <button type="button" class="lightbox-close" data-i18n-label="lightbox.close" aria-label="Tutup">×</button>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" hidden>
+    <button type="button" class="lightbox-close" data-i18n-label="lightbox.close" aria-label="Tutup" title="Tutup">×</button>
+    <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev data-i18n-label="lightbox.previous" aria-label="Gambar sebelumnya" title="Gambar sebelumnya">‹</button>
     <figure>
       <img id="lightbox-image" src="" alt="">
       <figcaption id="lightbox-caption"></figcaption>
     </figure>
+    <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next data-i18n-label="lightbox.next" aria-label="Gambar berikutnya" title="Gambar berikutnya">›</button>
   </div>
 
   <footer class="site-footer">
